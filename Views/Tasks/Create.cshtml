@@ -1,0 +1,23 @@
+﻿@model ToDoList.Models.Task
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+    <body>
+        <h4>Add new task</h4>
+        @using (Html.BeginForm())
+        {
+            @Html.LabelFor(model => model.Description)
+            @Html.EditorFor(model => model.Description)
+            <input type="submit" value="Create" />
+        }
+    </body>
+</html>
