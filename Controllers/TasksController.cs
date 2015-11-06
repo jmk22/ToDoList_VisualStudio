@@ -13,7 +13,7 @@ namespace ToDoList.Controllers
         // GET: Tasks
         public ActionResult Index()
         {
-            return View();
+            return View(db.Tasks.ToList());
         }
 
         // GET: Tasks/Details/{id}
@@ -40,14 +40,17 @@ namespace ToDoList.Controllers
         // GET: Tasks/Edit/{id}
         public ActionResult Edit(int? id)
         {
-            return View();
+            Task task = db.Tasks.Find(id);
+            return View(task);
         }
 
         // POST: Tasks/Edit/{id}
         [HttpPost]
         public ActionResult Edit(Task task)
         {
-            return View();
+            db.Entry(task).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Tasks/Delete/{id}
